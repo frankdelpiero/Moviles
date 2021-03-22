@@ -6,4 +6,5 @@
     <string name="easy_button_title">Easy</string>
     <string name="doubt_button_title">Medium</string>
     <string name="difficult_button_title">Hard</string>
+    <string name="No_cards">No cards avaiable</string>
 </resources>

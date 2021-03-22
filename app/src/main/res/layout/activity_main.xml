@@ -7,8 +7,8 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="card"
-            type="es.uam.eps.dadm.cards.Card" />
+            name="mainViewModel"
+            type="es.uam.eps.dadm.cards.MainViewModel" />
     </data>
 
     <RelativeLayout
@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="20dp"
-            android:text="@{card.question}"
-            android:visibility="@{card.answered ? View.INVISIBLE : View.VISIBLE}"
+            android:text="@{mainViewModel.card.question}"
+            android:visibility="@{mainViewModel.card.answered ? View.INVISIBLE : View.VISIBLE}"
             tools:text="Texto para el entorno"/>
 
         <TextView
@@ -32,8 +32,8 @@
             android:layout_below="@id/question_text_view"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
-            android:visibility="@{card.answered ? View.VISIBLE : View.INVISIBLE}"
-            android:text="@{card.answer}"
+            android:visibility="@{mainViewModel.card.answered ? View.VISIBLE : View.INVISIBLE}"
+            android:text="@{mainViewModel.card.answer}"
             tools:text="Respuesta para el entorno"/>
 
         <Button
@@ -41,7 +41,7 @@
             android:layout_below="@id/answer_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{card.answered ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{mainViewModel.card.answered ? View.INVISIBLE : View.VISIBLE}"
             android:text="@string/answer_button_text" />
 
         <View
@@ -59,14 +59,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:visibility="@{card.answered ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{mainViewModel.card.answered ? View.VISIBLE : View.INVISIBLE}"
             android:gravity="center">
             <Button
                 android:id="@+id/difficultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/difficult_button_title"
-                android:onClick="@{() -> card.update_difficult()}"
                 android:backgroundTint="@android:color/holo_red_light">
             </Button>
 
@@ -75,7 +74,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/doubt_button_title"
-                android:onClick="@{() -> card.update_doubt()}"
                 android:backgroundTint="@android:color/holo_blue_light">
             </Button>
 
@@ -84,7 +82,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/easy_button_title"
-                android:onClick="@{() -> card.update_easy()}"
                 android:backgroundTint="@android:color/holo_green_light">
             </Button>
 
