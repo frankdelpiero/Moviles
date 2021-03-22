@@ -9,4 +9,5 @@
     <string name="difficult_button_title">Dificil</string>
     <string name="No_cards">No hay cartas disponibles</string>
     <string name="cards_left_format">quedan %d tarjetas</string>
+    <string name="subtitle_text">Toca para estudiar</string>
 </resources>
