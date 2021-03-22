@@ -24,7 +24,14 @@
             android:text="@{mainViewModel.card.question}"
             android:visibility="@{mainViewModel.card.answered ? View.INVISIBLE : View.VISIBLE}"
             tools:text="Texto para el entorno"/>
-
+        <TextView
+            android:id="@+id/info_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="@{@string/cards_left_format(mainViewModel.cardsLeft)}"
+            tools:text="Número de tarjetas restantes" />
         <TextView
             android:id="@+id/answer_text_view"
             android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import es.uam.eps.dadm.cards.databinding.ActivityMainBinding
 import timber.log.Timber
@@ -47,6 +48,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val observer = object: Observer<Int> {
+            override fun onChanged(t: Int?) {
+                binding.infoTextView?.text = t.toString()
+            }
+        }
+        // Incluyo la interaccion con cardsLeft
+        //viewModel.cardsLeft.observe(this, observer)
 
         binding.mainViewModel = viewModel // Va a usar view model
         binding.apply {
