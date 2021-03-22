@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import es.uam.eps.dadm.cards.databinding.ActivityStudyBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,7 +44,7 @@ class TitleFragment : Fragment() {
             container,
             false)
         binding.cardsTitleTextView.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Intent(activity, StudyActivity::class.java))
         }
 
         return binding.root

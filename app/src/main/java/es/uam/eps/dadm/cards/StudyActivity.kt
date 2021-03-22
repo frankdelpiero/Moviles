@@ -2,24 +2,19 @@ package es.uam.eps.dadm.cards
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import es.uam.eps.dadm.cards.databinding.ActivityMainBinding
+import es.uam.eps.dadm.cards.databinding.ActivityStudyBinding
 import timber.log.Timber
-import java.time.LocalDateTime
+
 private const val TAG : String = "MainActivity"
 private const val ANSWERED_KEY = "es.uam.eps.dadm.cards:answered"
 
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+class StudyActivity : AppCompatActivity() {
+    lateinit var binding: ActivityStudyBinding
 
     private val viewModel: MainViewModel by lazy { //Instancia de view model
         ViewModelProvider(this).get(MainViewModel::class.java)
@@ -47,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_study)
 
         val observer = object: Observer<Int> {
             override fun onChanged(t: Int?) {
