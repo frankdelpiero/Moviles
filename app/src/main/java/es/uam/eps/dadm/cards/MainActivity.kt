@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import es.uam.eps.dadm.cards.databinding.ActivityMainBinding
+import timber.log.Timber
 import java.time.LocalDateTime
 private const val TAG : String = "MainActivity"
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             answerButton.setOnClickListener {
                 card?.answered = true
+                Timber.i("onCreate called")
                 invalidateAll()
             }
 
