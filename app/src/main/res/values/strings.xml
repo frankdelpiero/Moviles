@@ -9,5 +9,7 @@
     <string name="No_cards">No cards avaiable</string>
     <string name="cards_left_format"> %d cards available</string>
     <string name="subtitle_text">Touch to study</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
