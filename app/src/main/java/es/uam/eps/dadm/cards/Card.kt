@@ -12,10 +12,10 @@ import kotlin.math.max
 import java.text.SimpleDateFormat
 private const val TAG : String = "Card"
 open class Card(
-    open var question: String,
-    open var answer: String,
-    var date: String = LocalDateTime.now().toString(),
-    var id: String = UUID.randomUUID().toString()
+        open var question: String,
+        open var answer: String,
+        var date: String = LocalDateTime.now().toString(),
+        var id: String = UUID.randomUUID().toString()
 ){
     var quality :Int =0
     var repetitions: Int = 0
