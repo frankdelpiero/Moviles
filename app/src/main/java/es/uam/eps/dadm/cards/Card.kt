@@ -3,6 +3,7 @@ package es.uam.eps.dadm.cards
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import timber.log.Timber
 import java.lang.Exception
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -52,6 +53,7 @@ open class Card(
         } else {
             interval = ceil(interval.toDouble()*easiness).toLong()
         }
+        Timber.i("Easiness: $easiness")
         nextPracticeDate = currentDate.plusDays(interval) //Asignamos el siguiente dia
     }
 

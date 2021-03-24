@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
+import timber.log.Timber
 
 class TitleActivity : AppCompatActivity() {
     lateinit var binding: ActivityTitleBinding
@@ -14,6 +15,7 @@ class TitleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
+        Timber.i("ENTRA NO")
         supportActionBar?.hide()
     }
 }

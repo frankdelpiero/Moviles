@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import timber.log.Timber
 import java.time.LocalDateTime
 
-class MainViewModel : ViewModel() {
+class StudyViewModel : ViewModel() {
     var card:Card? = null
     var cards: MutableList<Card> = mutableListOf<Card>()
     private val _cardsLeft = MutableLiveData<Int>()
@@ -15,7 +15,7 @@ class MainViewModel : ViewModel() {
         get() = _cardsLeft
 
     init {
-        //Timber.i("MainViewModel created")
+        Timber.i("MainViewModel created")
         cards = CardsApplication.cards
         _cardsLeft.value = cards.size
         card = random_card()

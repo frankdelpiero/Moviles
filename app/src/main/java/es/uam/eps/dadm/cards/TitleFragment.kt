@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import es.uam.eps.dadm.cards.databinding.ActivityStudyBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
+import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +45,7 @@ class TitleFragment : Fragment() {
             container,
             false)
         binding.cardsTitleTextView.setOnClickListener {
+            Timber.i("AYUDDDAAA")
             startActivity(Intent(activity, StudyActivity::class.java))
         }
 
