@@ -22,7 +22,7 @@
             android:layout_centerInParent="true"
             android:textSize="20dp"
             android:text="@{studyViewModel.card.question}"
-            android:visibility="@{studyViewModel.card.answered ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{studyViewModel.card.answered ? View.VISIBLE : View.VISIBLE}"
             tools:text="Texto para el entorno"/>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="30dp"
             android:layout_height="1dp"
-            android:visibility="invisible"
+            android:visibility="@{studyViewModel.card.answered ? View.VISIBLE : View.INVISIBLE}"
             android:background="@android:color/darker_gray"/>
 
         <LinearLayout
