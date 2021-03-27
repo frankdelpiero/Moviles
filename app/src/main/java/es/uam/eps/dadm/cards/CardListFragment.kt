@@ -15,6 +15,12 @@ import java.time.LocalDateTime
 
 class CardListFragment: Fragment(){
     var estudios:String = ""
+    private lateinit var binding: FragmentCardListBinding
+    private lateinit var adapter: CardAdapter // Instancio el adaptador
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -24,18 +30,10 @@ class CardListFragment: Fragment(){
                 R.layout.fragment_card_list,
                 container,
                 false)
-        for (c in CardsApplication.cards){
-            if(c.isDue(LocalDateTime.now())){
-                estudios+=c.question
-                estudios+= "\n"
-                estudios+= c.answer
-                estudios+= "\n"
-                estudios+= "\n"
-            }
-        }
+        adapter = CardAdapter() // Creamos el adaptador
+        adapter.data = CardsApplication.cards
+        binding.cardRecyclerView.adapter = adapter
 
-        binding.studyQuestions.text = estudios
-        estudios= ""
         binding.buttonQuestion.setOnClickListener { view ->
             if (CardsApplication.numberOfCardsLeft()  > 0)
                 view.findNavController().navigate(R.id.action_cardListFragment_to_studyFragment2)
