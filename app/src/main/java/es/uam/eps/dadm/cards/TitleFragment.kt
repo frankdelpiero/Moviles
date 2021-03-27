@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import es.uam.eps.dadm.cards.databinding.ActivityStudyBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
@@ -24,26 +26,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class TitleFragment : Fragment() {
 
-    interface onTitleFragmentInteractionListener {
-        fun onStudy()
-    }
-    var listener: onTitleFragmentInteractionListener? = null // Asigno a listener el fragmetnos a solicitar
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = context as onTitleFragmentInteractionListener?
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -62,13 +47,18 @@ class TitleFragment : Fragment() {
             R.layout.fragment_title,
             container,
             false)
-        binding.cardsTitleTextView.setOnClickListener {
-            Timber.i("AYUDDDAAA")
-            //startActivity(Intent(activity, StudyActivity::class.java))
-            listener?.onStudy()
+
+        binding.cardsTitleTextView.setOnClickListener { view ->
+            Timber.i("Left cards ")
+            if (CardsApplication.numberOfCardsLeft()  > 0)
+                view.findNavController().navigate(R.id.action_titleFragment_to_cardListFragment)
+            else
+                Toast.makeText(activity, R.string.No_cards, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
     }
 }
+
+
 

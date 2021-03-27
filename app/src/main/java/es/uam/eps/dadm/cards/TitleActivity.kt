@@ -8,18 +8,9 @@ import androidx.databinding.DataBindingUtil
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
 import timber.log.Timber
 
-class TitleActivity : AppCompatActivity(),TitleFragment.onTitleFragmentInteractionListener {
+class TitleActivity : AppCompatActivity() {
     lateinit var binding: ActivityTitleBinding
 
-    override fun onStudy() {
-        var fragment = StudyFragment()
-
-        supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                ?.commit()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +18,14 @@ class TitleActivity : AppCompatActivity(),TitleFragment.onTitleFragmentInteracti
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
         supportActionBar?.hide()
         var fragment = supportFragmentManager //Lista de fragmentos
-                .findFragmentById(R.id.fragment_container)
+                .findFragmentById(R.id.navHostFragment)
 
         if (fragment == null){ //En caso de que sea la primera vez que registramos el fragmento
             fragment = TitleFragment()
 
             supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, fragment)
+                    .add(R.id.navHostFragment, fragment)
                     .commit()
         }
     }

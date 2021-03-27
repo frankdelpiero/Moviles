@@ -9,6 +9,7 @@
     <string name="No_cards">No cards avaiable</string>
     <string name="cards_left_format"> %d cards available</string>
     <string name="subtitle_text">Touch to study</string>
+    <string name="buttonQuestion">STUDY</string>
 
 
 
