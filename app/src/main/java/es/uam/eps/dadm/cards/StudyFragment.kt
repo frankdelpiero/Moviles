@@ -32,7 +32,6 @@ class StudyFragment : Fragment() {
     private var param2: String? = null
 
     private val viewModel: StudyViewModel by lazy { //Instancia de view model
-        Timber.i("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO")
         ViewModelProvider(this).get(StudyViewModel::class.java)
     }
 
@@ -81,7 +80,6 @@ class StudyFragment : Fragment() {
             if (viewModel.card == null){
                 //Toast.makeText(this@,R.string.No_cards, Toast.LENGTH_LONG).show()
             }
-            Timber.i("PORQUE ")
             binding.invalidateAll()
         }
 
@@ -91,7 +89,6 @@ class StudyFragment : Fragment() {
 
         // Incluyo la interaccion con cardsLeft
         //viewModel.cardsLeft.observe(this, observer)
-        Timber.i("AQUI NO")
         binding.apply {
             answerButton?.setOnClickListener {
                 viewModel.card?.answered = true

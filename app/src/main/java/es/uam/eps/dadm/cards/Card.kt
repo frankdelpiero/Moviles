@@ -130,4 +130,16 @@ open class Card(
         update(LocalDateTime.now())
     }
 
+    fun showMoreDetails(detail:Int):String{
+        var cadena = ""
+        if (detail == 1){
+            cadena = "Easiness: "+ this.easiness
+        } else if (detail==2){
+            cadena = "Repetitions: "+this.repetitions
+        } else if (detail == 3){
+            cadena = "Interval: "+this.interval
+        }
+        return cadena
+    }
+
 }

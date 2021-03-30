@@ -5,41 +5,57 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
+import es.uam.eps.dadm.cards.databinding.ListItemCardBinding
 import timber.log.Timber
 
 class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
-    private var holderCounter = 0
-    private var onBindCounter = 0
 
     var data =  listOf<Card>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+    lateinit var binding: ListItemCardBinding
 
-    class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
-        lateinit var card: Card
-        private val questionTextView: TextView = itemView.findViewById(R.id.list_item_question)
-        private val answerTextView:TextView = itemView.findViewById(R.id.list_item_answer)
-        private val dateTextView: TextView = itemView.findViewById(R.id.list_item_date)
-        init {
-            itemView.setOnClickListener {
-                Timber.d("Tarjeta: ${card.question} seleccionada")
-            }
-        }
+   inner class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(card: Card) {
-            this.card = card
-            questionTextView.text = card.question
-            answerTextView.text = card.answer
-            dateTextView.text = card.date.substring(0,10)
+            binding.card = card
         }
+
     }
     //Crea contenedores que va a reciclar la vista recicladora
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_card, parent, false)
-        return CardHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        binding = ListItemCardBinding.inflate(layoutInflater, parent, false)
+        binding.apply {
+            listItemButtonMore.setOnClickListener{
+                listItemQuestion.visibility = View.INVISIBLE
+                listItemAnswer.visibility = View.INVISIBLE
+                listItemDate.visibility = View.INVISIBLE
+
+                listItemButtonMore.visibility = View.INVISIBLE
+                listItemButtonLess.visibility = View.VISIBLE
+
+                listItemEasiness.visibility = View.VISIBLE
+                listItemRepetitions.visibility = View.VISIBLE
+                listItemInterval.visibility = View.VISIBLE
+            }
+            listItemButtonLess.setOnClickListener{
+                listItemQuestion.visibility = View.VISIBLE
+                listItemAnswer.visibility  = View.VISIBLE
+                listItemDate.visibility = View.VISIBLE
+
+                listItemButtonMore.visibility = View.VISIBLE
+                listItemButtonLess.visibility = View.INVISIBLE
+
+                listItemEasiness.visibility = View.INVISIBLE
+                listItemRepetitions.visibility = View.INVISIBLE
+                listItemInterval.visibility = View.INVISIBLE
+            }
+        }
+        return CardHolder(binding.root)
     }
 
     override fun getItemCount() = data.size //Obtenemos el tamaño de las cartas
