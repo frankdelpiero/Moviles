@@ -1,6 +1,7 @@
 package es.uam.eps.dadm.cards
 
 import android.app.Application
+import androidx.annotation.Nullable
 import timber.log.Timber
 import java.time.LocalDateTime
 
@@ -21,7 +22,6 @@ class CardsApplication: Application() {
 
     companion object {
         fun numberOfCardsLeft(): Int {
-            Timber.i("BOXBOXBOX")
             for (card in cards){
                 Timber.i("Cartas: ${card.question} ${card.answer}  ${card.nextPracticeDate} ${card.easiness}")
                 if (card.isDue(LocalDateTime.now())){
@@ -30,6 +30,14 @@ class CardsApplication: Application() {
                 }
             }
             return 0
+        }
+        fun getCard(id:String):Card{
+            for (card in cards){
+                if (card.id.equals(id)){
+                    return card
+                }
+            }
+            return Card("NO","existe")
         }
 
         var cards: MutableList<Card> = mutableListOf<Card>()

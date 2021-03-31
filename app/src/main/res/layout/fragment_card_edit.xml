@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="card"
+            type="es.uam.eps.dadm.cards.Card" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/IDcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
+            android:text="@{card.id}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180px"
+            android:textSize="20dp"
+            android:layout_marginStart="140px"
+            android:textColor="@color/teal_200"
+            android:text="@{card.date.substring(0,10)}"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="280px"
+            android:text="@string/question"
+            />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320px"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="480px"
+            android:text="@string/answer" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/answerText"
+            android:layout_width="433dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="510px"
+
+            android:inputType="text" />
+
+        <LinearLayout
+            android:id="@+id/acceptCancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="700px"
+            android:gravity="center">
+            <Button
+                android:id="@+id/acceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acceptButton"
+                android:backgroundTint="@android:color/holo_purple">
+            </Button>
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancelButton"
+                android:backgroundTint="@android:color/holo_purple">
+            </Button>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

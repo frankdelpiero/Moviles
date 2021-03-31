@@ -27,6 +27,22 @@
         <action
             android:id="@+id/action_cardListFragment_to_studyFragment2"
             app:destination="@id/studyFragment2" />
+        <action
+            android:id="@+id/action_cardListFragment_to_cardEditFragment"
+            app:destination="@id/cardEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardEditFragment"
+        android:name="es.uam.eps.dadm.cards.CardEditFragment"
+        android:label="CardEditFragment">
+        <argument
+            android:name="cardId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cardEditFragment_to_cardListFragment"
+            app:destination="@id/cardListFragment"
+            app:popUpTo="@id/cardListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.ListItemCardBinding
@@ -19,10 +20,19 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
     lateinit var binding: ListItemCardBinding
 
    inner class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        lateinit var card: Card
         fun bind(card: Card) {
+            this.card=card
             binding.card = card
         }
+       init { // Navegacion desde cardListFragment a cardEditFragment
+           binding.listItemQuestion.setOnClickListener {
+               val id = card.id
+               it.findNavController()
+                   .navigate(CardListFragmentDirections
+                       .actionCardListFragmentToCardEditFragment(id))
+           }
+       }
 
     }
     //Crea contenedores que va a reciclar la vista recicladora

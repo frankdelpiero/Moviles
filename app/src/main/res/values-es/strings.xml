@@ -12,6 +12,10 @@
     <string name="subtitle_text">Toca para estudiar</string>
     <string name="buttonQuestion">ESTUDIA</string>
     <string name="showMore">Mostrar Mas</string>
-
-
+    <string name="showLess">Show Less</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question">Pregunta</string>
+    <string name="answer">Respuesta</string>
+    <string name="acceptButton">Aceptar</string>
+    <string name="cancelButton">Cancelar</string>
 </resources>

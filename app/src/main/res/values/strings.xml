@@ -11,7 +11,12 @@
     <string name="subtitle_text">Touch to study</string>
     <string name="buttonQuestion">STUDY</string>
     <string name="showMore">Show More</string>
-
+    <string name="showLess">Show Less</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="acceptButton">Accept</string>
+    <string name="cancelButton">Cancel</string>
 
 
 </resources>
