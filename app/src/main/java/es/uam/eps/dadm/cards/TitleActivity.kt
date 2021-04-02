@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
 import timber.log.Timber
 
@@ -16,6 +18,9 @@ class TitleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
+        NavigationUI.setupWithNavController(
+                binding.navView,
+                findNavController(R.id.navHostFragment))
         supportActionBar?.hide()
         var fragment = supportFragmentManager //Lista de fragmentos
                 .findFragmentById(R.id.navHostFragment)

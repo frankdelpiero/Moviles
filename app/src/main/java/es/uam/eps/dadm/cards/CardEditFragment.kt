@@ -62,7 +62,7 @@ class CardEditFragment : Fragment() {
         }
         binding.questionText.addTextChangedListener(questionTextWatcher) // Cambio el nombre de la pregunta
         binding.answerText.addTextChangedListener(answerTextWatcher) // Cambiamos la respuesta
-        binding.acceptButton.setOnClickListener{
+        binding.acceptCardEditButton.setOnClickListener{
             card.question = question
             card.answer = answer
             it.findNavController()
@@ -70,7 +70,7 @@ class CardEditFragment : Fragment() {
 
         }
 
-        binding.cancelButton.setOnClickListener{
+        binding.cancelCardEditButton.setOnClickListener{
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment())
         }

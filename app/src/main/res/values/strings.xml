@@ -17,6 +17,10 @@
     <string name="answer">Answer</string>
     <string name="acceptButton">Accept</string>
     <string name="cancelButton">Cancel</string>
-
+    <string name="card_question_hint">Write here the question</string>
+    <string name="card_answer_hint">Write here the answer</string>
+    <string name="decks_nav_menu_title">Bunchs</string>
+    <string name="study_nav_menu_title">Study</string>
+    <string name="statistics_nav_menu_title">Statistics</string>
 
 </resources>

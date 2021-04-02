@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
@@ -25,21 +26,28 @@ class CardListFragment: Fragment(){
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentCardListBinding>(
-                inflater,
-                R.layout.fragment_card_list,
-                container,
-                false)
-        adapter = CardAdapter() // Creamos el adaptador
-        adapter.data = CardsApplication.cards
-        binding.cardRecyclerView.adapter = adapter
+        binding = DataBindingUtil.inflate<FragmentCardListBinding>(
+                 inflater,
+                 R.layout.fragment_card_list,
+                 container,
+                 false)
+         adapter = CardAdapter() // Creamos el adaptador
+         adapter.data = CardsApplication.cards
+         binding.cardRecyclerView.adapter = adapter
 
-        binding.buttonQuestion.setOnClickListener { view ->
-            if (CardsApplication.numberOfCardsLeft()  > 0)
-                view.findNavController().navigate(R.id.action_cardListFragment_to_studyFragment2)
-            else
-                Toast.makeText(activity, R.string.No_cards, Toast.LENGTH_SHORT).show()
+         /**binding.buttonQuestion.setOnClickListener { view ->
+             if (CardsApplication.numberOfCardsLeft()  > 0)
+                 view.findNavController().navigate(R.id.action_cardListFragment_to_studyFragment2)
+             else
+                 Toast.makeText(activity, R.string.No_cards, Toast.LENGTH_SHORT).show()
+         }*/
+        //Escuchador que agrega una nueva carta y accede al panel para editarlo
+        binding.newCardFab.setOnClickListener{
+            val card = Card("","")
+            CardsApplication.addCard(card)
+            it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id))
         }
+
 
         return binding.root
 

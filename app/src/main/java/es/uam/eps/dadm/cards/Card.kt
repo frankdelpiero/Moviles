@@ -25,12 +25,10 @@ open class Card(
     var easiness: Double = 2.5
     var nowaux:LocalDateTime = LocalDateTime.now()
     var answered = false
-
     open fun show(){
-        var respuestaDificultad :Int?
+        var respuestaDificultad :Int
         println("$question (INTRO para ver la respuesta)")
         respuestaDificultad = readLine()?.toIntOrNull()?:1
-        respuestaDificultad = 3
         do{
             print("${answer.capitalize()} (Teclea 0 -> Difícil 3 -> Dudo 5 -> Fácil): 3) ")
             respuestaDificultad =  readLine()?.toIntOrNull() ?: 1

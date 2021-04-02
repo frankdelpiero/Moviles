@@ -1,5 +1,6 @@
 <layout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View"/>
@@ -7,6 +8,14 @@
             name="card"
             type="es.uam.eps.dadm.cards.Card" />
     </data>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mtrl_card_spacing"
+        android:layout_marginTop="@dimen/mtrl_card_spacing"
+        android:layout_marginRight="@dimen/mtrl_card_spacing"
+        app:cardBackgroundColor="@color/cardview_light_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,6 +32,7 @@
             android:layout_alignParentTop="true"
             android:textColor="@color/teal_200"
             android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:text="@{card.question}"
             android:textStyle="bold" />
 
@@ -33,6 +43,7 @@
             android:layout_below="@id/list_item_question"
             android:textColor="@color/teal_200"
             android:text="@{card.answer}"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:textSize="16sp" />
 
         <TextView
@@ -41,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="@{card.date.substring(0,10)}"
             android:layout_alignParentEnd="true"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:layout_alignParentRight="true" />
 
         <TextView
@@ -98,4 +110,5 @@
         </Button>
 
     </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

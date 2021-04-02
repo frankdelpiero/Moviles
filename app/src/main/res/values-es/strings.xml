@@ -18,4 +18,10 @@
     <string name="answer">Respuesta</string>
     <string name="acceptButton">Aceptar</string>
     <string name="cancelButton">Cancelar</string>
+    <string name="card_question_hint">Escribe aquí la pregunta</string>
+    <string name="card_answer_hint">Escribe aqui la respuesta</string>
+    <string name="decks_nav_menu_title">Mazos</string>
+    <string name="study_nav_menu_title">Estudiar</string>
+    <string name="statistics_nav_menu_title">Estadisiticas</string>
+
 </resources>

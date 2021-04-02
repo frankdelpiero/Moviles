@@ -25,6 +25,10 @@
             android:visibility="@{studyViewModel.card.answered ? View.VISIBLE : View.VISIBLE}"
             tools:text="Texto para el entorno"/>
 
+        <com.google.android.material.chip.ChipGroup
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
             android:id="@+id/info_text_view"
             android:layout_width="wrap_content"
@@ -33,6 +37,7 @@
             android:textSize="20dp"
             android:text="@{@string/cards_left_format(studyViewModel.cardsLeft)}"
             tools:text="Número de tarjetas restantes" />
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/answer_text_view"
@@ -64,35 +69,52 @@
             android:background="@android:color/darker_gray"/>
 
         <LinearLayout
+
             android:id="@+id/difficultyButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:visibility="@{studyViewModel.card.answered ? View.VISIBLE : View.INVISIBLE}"
             android:gravity="center">
-            <Button
-                android:id="@+id/difficultButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/difficult_button_title"
-                android:backgroundTint="@android:color/holo_red_light">
-            </Button>
 
-            <Button
-                android:id="@+id/doubtButton"
-                android:layout_width="wrap_content"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/acceptCancelButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/doubt_button_title"
-                android:backgroundTint="@android:color/holo_blue_light">
-            </Button>
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/easyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/easy_button_title"
-                android:backgroundTint="@android:color/holo_green_light">
-            </Button>
+                <Button
+                    android:id="@+id/difficultButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/difficult_button_title"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@android:color/holo_red_light">
+                </Button>
+
+                <Button
+                    android:id="@+id/doubtButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/doubt_button_title"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@android:color/holo_blue_light">
+                </Button>
+
+                <Button
+                    android:id="@+id/easyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/easy_button_title"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@android:color/holo_green_light">
+                </Button>
+
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
 
         </LinearLayout>
 

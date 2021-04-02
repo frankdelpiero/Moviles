@@ -39,6 +39,9 @@ class CardsApplication: Application() {
             }
             return Card("NO","existe")
         }
+        fun addCard(card:Card){
+            cards.add(card)
+        }
 
         var cards: MutableList<Card> = mutableListOf<Card>()
 
