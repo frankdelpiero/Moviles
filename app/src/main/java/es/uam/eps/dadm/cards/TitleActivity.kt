@@ -18,6 +18,8 @@ class TitleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
+
+
         NavigationUI.setupWithNavController(
                 binding.navView,
                 findNavController(R.id.navHostFragment))

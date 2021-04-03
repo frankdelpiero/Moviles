@@ -131,7 +131,7 @@ open class Card(
     fun showMoreDetails(detail:Int):String{
         var cadena = ""
         if (detail == 1){
-            cadena = "Easiness: "+ this.easiness
+            cadena = "Easiness: "+ this.easiness.toString().substring(0,3)
         } else if (detail==2){
             cadena = "Repetitions: "+this.repetitions
         } else if (detail == 3){
