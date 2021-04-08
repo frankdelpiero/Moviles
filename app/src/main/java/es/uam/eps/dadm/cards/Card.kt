@@ -26,7 +26,8 @@ open class Card(
     var nowaux:LocalDateTime = LocalDateTime.now()
     var answered = false
     open fun show(){
-        var respuestaDificultad :Int
+
+        /**var respuestaDificultad =0
         println("$question (INTRO para ver la respuesta)")
         respuestaDificultad = readLine()?.toIntOrNull()?:1
         do{
@@ -35,7 +36,7 @@ open class Card(
         }while(respuestaDificultad != 0 && respuestaDificultad != 3 && respuestaDificultad != 5)
 
         respuestaDificultad.also { quality = it }
-
+        */
 
     }
 
@@ -75,15 +76,12 @@ open class Card(
         return "Card|$question|$answer|$date|$id|$easiness|$repetitions|$interval|$nextPracticeDate"
     }
 
-    fun cardDetails(date:LocalDateTime):Boolean{
-        if (date.dayOfYear >= nextPracticeDate.dayOfYear){
+    fun cardDetails(){
             show()
             update(LocalDateTime.parse(nextPracticeDate.toString()))
             details()
             println("")
-            return true
-        }
-        return false
+
     }
 
     fun isDue(date:LocalDateTime) = date.dayOfYear >= nextPracticeDate.dayOfYear
