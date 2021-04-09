@@ -17,20 +17,26 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
             field = value
             notifyDataSetChanged()
         }
+
+    var dataDeck = listOf<String>()
+
     lateinit var binding: ListItemCardBinding
 
    inner class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var card: Card
-        fun bind(card: Card) {
+       lateinit var deckId:  String
+        fun bind(card: Card,deckId:String) {
             this.card=card
+            this.deckId=deckId
             binding.card = card
         }
        init { // Navegacion desde cardListFragment a cardEditFragment
            binding.listItemQuestion.setOnClickListener {
                val id = card.id
+               val deckId = deckId
                it.findNavController()
                    .navigate(CardListFragmentDirections
-                       .actionCardListFragmentToCardEditFragment(id))
+                       .actionCardListFragmentToCardEditFragment(id,deckId))
            }
        }
 
@@ -40,6 +46,7 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
         val layoutInflater = LayoutInflater.from(parent.context)
         binding = ListItemCardBinding.inflate(layoutInflater, parent, false)
         binding.apply {
+            //Mostrar informacion extra
             listItemButtonMore.setOnClickListener{
                 listItemQuestion.visibility = View.INVISIBLE
                 listItemAnswer.visibility = View.INVISIBLE
@@ -52,6 +59,7 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
                 listItemRepetitions.visibility = View.VISIBLE
                 listItemInterval.visibility = View.VISIBLE
             }
+            //Ocultar informacion extra
             listItemButtonLess.setOnClickListener{
                 listItemQuestion.visibility = View.VISIBLE
                 listItemAnswer.visibility  = View.VISIBLE
@@ -71,6 +79,6 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
     override fun getItemCount() = data.size //Obtenemos el tamaño de las cartas
 
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position],dataDeck[0])
     }
 }

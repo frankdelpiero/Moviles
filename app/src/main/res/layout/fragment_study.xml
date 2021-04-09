@@ -12,6 +12,7 @@
     </data>
 
     <RelativeLayout
+        android:visibility="@{studyViewModel.card  == null ?View.INVISIBLE : View.VISIBLE}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,11 +26,7 @@
             android:visibility="@{studyViewModel.card.answered ? View.VISIBLE : View.VISIBLE}"
             tools:text="Texto para el entorno"/>
 
-        <com.google.android.material.chip.ChipGroup
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
+        <com.google.android.material.chip.Chip
             android:id="@+id/info_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +34,7 @@
             android:textSize="20dp"
             android:text="@{@string/cards_left_format(studyViewModel.cardsLeft)}"
             tools:text="Número de tarjetas restantes" />
-        </com.google.android.material.chip.ChipGroup>
+
 
         <TextView
             android:id="@+id/answer_text_view"
@@ -114,10 +111,10 @@
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
-
-
         </LinearLayout>
 
     </RelativeLayout>
+
+
 
 </layout>

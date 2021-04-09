@@ -134,6 +134,8 @@ open class Card(
             cadena = "Repetitions: "+this.repetitions
         } else if (detail == 3){
             cadena = "Interval: "+this.interval
+        } else if (detail == 4){
+            cadena = "Dia siguiente: "+this.nextPracticeDate.toString().substring(0,10)
         }
         return cadena
     }

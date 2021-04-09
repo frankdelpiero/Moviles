@@ -29,6 +29,8 @@ class CardEditFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var card:Card
+    private lateinit var cardId:String
+    private lateinit var deckId:String
     lateinit var question:String
     lateinit var answer:String
 
@@ -66,13 +68,13 @@ class CardEditFragment : Fragment() {
             card.question = question
             card.answer = answer
             it.findNavController()
-                .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment())
+                .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 
         }
 
         binding.cancelCardEditButton.setOnClickListener{
             it.findNavController()
-                .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment())
+                .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
         }
 
     }
@@ -93,7 +95,12 @@ class CardEditFragment : Fragment() {
             container,
             false)
         val args = CardEditFragmentArgs.fromBundle(requireArguments())
-        card = CardsApplication.getCard(args.cardId)
+        cardId = args.cardId
+        deckId = args.idMazo
+        Timber.i("ID DE LA CARTA: $cardId")
+        Timber.i("ID DEL MAZO: $deckId")
+        card = CardsApplication.getCard(cardId,deckId)
+        Timber.i("ID DE LA CARTA MODIFICADA ${card.id}")
         binding.card = card
         question = card.question
         answer = card.answer

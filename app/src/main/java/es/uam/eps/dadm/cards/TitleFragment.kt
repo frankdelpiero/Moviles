@@ -49,11 +49,7 @@ class TitleFragment : Fragment() {
             false)
 
         binding.cardsTitleTextView.setOnClickListener { view ->
-            Timber.i("Left cards ")
-            if (CardsApplication.numberOfCardsLeft()  > 0)
-                view.findNavController().navigate(R.id.action_titleFragment_to_cardListFragment)
-            else
-                Toast.makeText(activity, R.string.No_cards, Toast.LENGTH_SHORT).show()
+                view.findNavController().navigate(R.id.action_titleFragment_to_deckListFragment2)
         }
 
         return binding.root

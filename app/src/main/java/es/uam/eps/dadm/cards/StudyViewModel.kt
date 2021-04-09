@@ -4,6 +4,8 @@ package es.uam.eps.dadm.cards
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import java.time.LocalDateTime
 
@@ -16,8 +18,13 @@ class StudyViewModel : ViewModel() {
 
     init {
         Timber.i("MainViewModel created")
-        cards = CardsApplication.cards
-        _cardsLeft.value = cards.size
+        var deckList = CardsApplication.getDeck()
+        for (itdeck in deckList){
+            for (itcard in itdeck.cards){
+                cards.add(itcard)
+            }
+        }
+        _cardsLeft.value = CardsApplication.numberOfCardsLeft() //Numero de cartas restantes
         card = random_card()
     }
 

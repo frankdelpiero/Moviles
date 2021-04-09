@@ -22,5 +22,6 @@
     <string name="decks_nav_menu_title">Bunchs</string>
     <string name="study_nav_menu_title">Study</string>
     <string name="statistics_nav_menu_title">Statistics</string>
+    <string name="show_cards_of_deck">Show decks cards</string>
 
 </resources>

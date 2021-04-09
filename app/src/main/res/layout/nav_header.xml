@@ -5,11 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_principal_image_foreground" />
+            android:src="@drawable/ic_principal_image_foreground"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

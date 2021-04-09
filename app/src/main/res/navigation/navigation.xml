@@ -10,11 +10,11 @@
         android:label="TitleFragment"
         tools:layout="@layout/fragment_title">
         <action
-            android:id="@+id/action_titleFragment_to_cardListFragment"
-            app:destination="@id/cardListFragment" />
-        <action
             android:id="@+id/action_titleFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_deckListFragment2"
+            app:destination="@id/deckListFragment2" />
     </fragment>
     <fragment
         android:id="@+id/studyFragment2"
@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_cardListFragment_to_cardEditFragment"
             app:destination="@id/cardEditFragment" />
+        <argument
+            android:name="idMazo"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
@@ -46,11 +49,23 @@
             app:destination="@id/cardListFragment"
             app:popUpTo="@id/cardListFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="idMazo"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="es.uam.eps.dadm.cards.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/deckListFragment2"
+        android:name="es.uam.eps.dadm.cards.DeckListFragment"
+        android:label="DeckListFragment"
+        tools:layout="@layout/fragment_deck_list">
+        <action
+            android:id="@+id/action_deckListFragment2_to_cardListFragment"
+            app:destination="@id/cardListFragment" />
+    </fragment>
 
 </navigation>

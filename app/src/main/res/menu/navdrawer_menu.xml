@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@id/cardListFragment"
+        android:id="@id/deckListFragment2"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_list_alt_24_foreground"
         android:title="@string/decks_nav_menu_title"/>

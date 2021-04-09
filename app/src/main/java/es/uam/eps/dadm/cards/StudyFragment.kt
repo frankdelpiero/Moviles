@@ -78,7 +78,7 @@ class StudyFragment : Fragment() {
             // informa al usuario mediante un Toast de que
             // no quedan tarjetas
             if (viewModel.card == null){
-                //Toast.makeText(this@,R.string.No_cards, Toast.LENGTH_LONG).show()
+                Toast.makeText(v.context,R.string.No_cards, Toast.LENGTH_LONG).show()
             }
             binding.invalidateAll()
         }

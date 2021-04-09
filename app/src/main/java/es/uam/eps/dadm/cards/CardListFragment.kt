@@ -15,7 +15,6 @@ import timber.log.Timber
 import java.time.LocalDateTime
 
 class CardListFragment: Fragment(){
-    var estudios:String = ""
     private lateinit var binding: FragmentCardListBinding
     private lateinit var adapter: CardAdapter // Instancio el adaptador
 
@@ -31,9 +30,12 @@ class CardListFragment: Fragment(){
                  R.layout.fragment_card_list,
                  container,
                  false)
+        var args = CardListFragmentArgs.fromBundle(requireArguments())
+        var deck = CardsApplication.getIdDeck(args.idMazo)
          adapter = CardAdapter() // Creamos el adaptador
-         adapter.data = CardsApplication.cards
-         binding.cardRecyclerView.adapter = adapter
+         adapter.data = deck.cards // Lista de cartas de un almacen en especifico
+        adapter.dataDeck = mutableListOf(args.idMazo) //ID de la carta
+         binding.cardRecyclerView.adapter = adapter // Adaptador de las cartas
 
          /**binding.buttonQuestion.setOnClickListener { view ->
              if (CardsApplication.numberOfCardsLeft()  > 0)
@@ -44,8 +46,8 @@ class CardListFragment: Fragment(){
         //Escuchador que agrega una nueva carta y accede al panel para editarlo
         binding.newCardFab.setOnClickListener{
             val card = Card("","")
-            CardsApplication.addCard(card)
-            it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id))
+            CardsApplication.addCard(card,deck.id) // Añado la carta a un ID en especifico
+            it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,deck.id))
         }
 
 

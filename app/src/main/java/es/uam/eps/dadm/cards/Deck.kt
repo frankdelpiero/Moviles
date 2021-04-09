@@ -111,4 +111,15 @@ class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
         }
     }
 
+    fun deckSize():String{
+        var counter = 0
+        for (c in cards){
+            if (c.isDue(LocalDateTime.now())) {
+                counter += 1
+            }
+        }
+        return "Cartas por estudiar: "+counter
+    }
+
+
 }
