@@ -32,7 +32,6 @@ class StudyViewModel : ViewModel() {
         // Completa este método
         _cardsLeft.value = cardsLeft.value?.minus(1)
         card?.quality = quality
-        Timber.i("calidad ${card?.quality}")
         card?.update(LocalDateTime.now())
         card =  random_card()
     }

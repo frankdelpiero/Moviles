@@ -24,5 +24,6 @@
     <string name="study_nav_menu_title">Estudiar</string>
     <string name="statistics_nav_menu_title">Estadisiticas</string>
     <string name="show_cards_of_deck">Mostrar cartas</string>
-
+    <string name="authorname">Franccy del Piero Sambrano Ganoza</string>
+    <string name="description">Esta aplicacion fue creada gracias a Encode. Su funcionamiento es muy simple. Nada mas entrar en la aplicacion si desplazamos a la derecha encontraremos un panel que nos llevara alrededor de los programas </string>
 </resources>

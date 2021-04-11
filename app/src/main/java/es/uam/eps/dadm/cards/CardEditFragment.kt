@@ -97,10 +97,7 @@ class CardEditFragment : Fragment() {
         val args = CardEditFragmentArgs.fromBundle(requireArguments())
         cardId = args.cardId
         deckId = args.idMazo
-        Timber.i("ID DE LA CARTA: $cardId")
-        Timber.i("ID DEL MAZO: $deckId")
         card = CardsApplication.getCard(cardId,deckId)
-        Timber.i("ID DE LA CARTA MODIFICADA ${card.id}")
         binding.card = card
         question = card.question
         answer = card.answer

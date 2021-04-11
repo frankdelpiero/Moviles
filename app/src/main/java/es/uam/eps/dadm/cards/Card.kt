@@ -52,7 +52,6 @@ open class Card(
         } else {
             interval = ceil(interval.toDouble()*easiness).toLong()
         }
-        Timber.i("Easiness: $easiness")
         nextPracticeDate = currentDate.plusDays(interval) //Asignamos el siguiente dia
     }
 
