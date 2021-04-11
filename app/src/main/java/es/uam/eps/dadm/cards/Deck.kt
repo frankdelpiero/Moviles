@@ -10,10 +10,12 @@ class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
     var cards: MutableList<Card> = mutableListOf()
 
     fun addCard(card:Card){
-        var purpose:Int?
-        println("Añadiendo tarjeta al mazo $name")
 
-        /**do {
+        /**
+         *  println("Añadiendo tarjeta al mazo $name")
+
+         *         var purpose:Int?
+         * do {
             println("Tecela el tipo (0 -> Card ; 1->Cloze): ")
             purpose = readLine()?.toIntOrNull()?:0 //Si no se coloca nada por defecto sera 0
         }while (purpose!! >= 2)

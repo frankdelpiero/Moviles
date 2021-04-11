@@ -90,7 +90,7 @@ class StudyFragment : Fragment() {
         // Incluyo la interaccion con cardsLeft
         //viewModel.cardsLeft.observe(this, observer)
         binding.apply {
-            answerButton?.setOnClickListener {
+            answerButton.setOnClickListener {
                 viewModel.card?.answered = true
                 binding.invalidateAll()
             }
