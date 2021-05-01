@@ -22,6 +22,8 @@ interface CardDao {
     @Update
     fun update(card: Card)
 
+    @Update
+    fun updateDeck(deck:Deck)
     @Delete
     fun delete(card: Card)
 

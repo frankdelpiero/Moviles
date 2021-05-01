@@ -66,6 +66,21 @@
         <action
             android:id="@+id/action_deckListFragment2_to_cardListFragment"
             app:destination="@id/cardListFragment" />
+        <action
+            android:id="@+id/action_deckListFragment2_to_deckEditFragment"
+            app:destination="@id/deckEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deckEditFragment"
+        android:name="es.uam.eps.dadm.cards.DeckEditFragment"
+        tools:layout="@layout/fragment_deck_list"
+        android:label="DeckEditFragment" >
+        <argument
+            android:name="idMazo"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_deckEditFragment_to_deckListFragment2"
+            app:destination="@id/deckListFragment2" />
     </fragment>
 
 </navigation>

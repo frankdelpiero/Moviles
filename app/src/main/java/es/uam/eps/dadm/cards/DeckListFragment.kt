@@ -15,9 +15,13 @@ import es.uam.eps.dadm.cards.databinding.FragmentDeckListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.time.LocalDateTime
+import java.util.concurrent.Executors
+
 class DeckListFragment:Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private lateinit var adapter: DeckAdapter // Instancio el adaptador
+    private var deckIDMax = 1L
+    private val executor = Executors.newSingleThreadExecutor()
     private val deckListViewModel  by lazy {
         ViewModelProvider(this).get( DeckListViewModel::class.java)
     }
@@ -58,7 +62,17 @@ class DeckListFragment:Fragment() {
             it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id))
         }
          */
+        binding.newDeckFab.setOnClickListener{
 
+            val deck = Deck(name = "")
+            executor.execute {
+                deckListViewModel.cardDao.addDeck(deck)
+            }
+            it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckEditFragment(deck.id)) // Navegamos a decKEditFraagment
+
+            //navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,args.idMazo))
+
+        }
         return binding.root
 
 

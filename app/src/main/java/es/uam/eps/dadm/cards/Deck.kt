@@ -8,15 +8,26 @@ import java.time.LocalDateTime
 import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.random.Random
 
 @Entity(tableName = "decks_table")
 class Deck(
-    @PrimaryKey
-    var id: Long,
-    @ColumnInfo(name = "deck_name")
+        @PrimaryKey
+    var id: Long = Random.nextLong(0, Long.MAX_VALUE),
+        @ColumnInfo(name = "deck_name")
     var name:String
 ) {
     //var cards: MutableList<Card> = mutableListOf()
+
+    fun getAttributeDeck(detail:Int):String{
+        var cadena = ""
+        if (detail == 1 ){
+            cadena = this.id.toString()
+        }
+        return cadena
+    }
+
+
 /**
     fun addCard(card:Card){
 
