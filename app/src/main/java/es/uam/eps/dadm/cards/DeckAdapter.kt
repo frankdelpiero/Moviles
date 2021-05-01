@@ -14,18 +14,23 @@ import timber.log.Timber
 class DeckAdapter() : RecyclerView.Adapter<DeckAdapter.DeckHolder>() {
 
     var data =  listOf<Deck>()
-
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     lateinit var binding: ListItemDeckBinding
 
     inner class DeckHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var deck:Deck
         fun bind(deck: Deck) {
+            Timber.i("ER DECK es ${deck.name}")
             this.deck =deck
             binding.deck  = deck
         }
         init { // Navegacion desde deckListFragment a cardListFragment
             binding.studyDeck.setOnClickListener {
                 val id = deck.id
+                Timber.i("ID es $id")
                 it.findNavController()
                         .navigate(DeckListFragmentDirections
                                 .actionDeckListFragment2ToCardListFragment(id))

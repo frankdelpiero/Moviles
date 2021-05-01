@@ -3,6 +3,9 @@ package es.uam.eps.dadm.cards
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import timber.log.Timber
 import java.lang.Exception
 import java.time.LocalDateTime
@@ -12,18 +15,24 @@ import kotlin.math.ceil
 import kotlin.math.max
 import java.text.SimpleDateFormat
 private const val TAG : String = "Card"
+@Entity(tableName = "cards_table")
 open class Card(
-        open var question: String,
-        open var answer: String,
-        var date: String = LocalDateTime.now().toString(),
-        var id: String = UUID.randomUUID().toString()
+    @ColumnInfo(name = "card_question")
+    open var question: String,
+    @ColumnInfo(name = "card_answer")
+    open var answer: String,
+    var deckId:Long,
+    @ColumnInfo(name = "card_date")
+    var date: String = LocalDateTime.now().toString(),
+    @PrimaryKey
+    var id: String = UUID.randomUUID().toString(),
 ){
     var quality :Int =0
     var repetitions: Int = 0
     var interval: Long = 1L
-    var nextPracticeDate: LocalDateTime = LocalDateTime.now()
+    var nextPracticeDate:String = LocalDateTime.now().toString()
     var easiness: Double = 2.5
-    var nowaux:LocalDateTime = LocalDateTime.now()
+    //var nowaux:LocalDateTime = LocalDateTime.now()
     var answered = false
     open fun show(){
 
@@ -31,12 +40,12 @@ open class Card(
         println("$question (INTRO para ver la respuesta)")
         respuestaDificultad = readLine()?.toIntOrNull()?:1
         do{
-            print("${answer.capitalize()} (Teclea 0 -> Difícil 3 -> Dudo 5 -> Fácil): 3) ")
-            respuestaDificultad =  readLine()?.toIntOrNull() ?: 1
+        print("${answer.capitalize()} (Teclea 0 -> Difícil 3 -> Dudo 5 -> Fácil): 3) ")
+        respuestaDificultad =  readLine()?.toIntOrNull() ?: 1
         }while(respuestaDificultad != 0 && respuestaDificultad != 3 && respuestaDificultad != 5)
 
         respuestaDificultad.also { quality = it }
-        */
+         */
 
     }
 
@@ -52,7 +61,8 @@ open class Card(
         } else {
             interval = ceil(interval.toDouble()*easiness).toLong()
         }
-        nextPracticeDate = currentDate.plusDays(interval) //Asignamos el siguiente dia
+        Timber.i("Easiness: $easiness")
+        nextPracticeDate = currentDate.plusDays(interval).toString() //Asignamos el siguiente dia
     }
 
     fun details(){
@@ -62,13 +72,12 @@ open class Card(
 
 
     open fun simulate(now:LocalDateTime) {
-        println()
-        println("Hoy es -->"+now)
+        /**println()
         nowaux = now
         if (now.dayOfYear >= nextPracticeDate.dayOfYear) {
-            println("Simulación de la tarjeta $question:")
-            show()
-        }
+        println("Simulación de la tarjeta $question:")
+        show()
+        }*/
     }
 
     override fun toString(): String {
@@ -76,14 +85,14 @@ open class Card(
     }
 
     fun cardDetails(){
-            show()
-            update(LocalDateTime.parse(nextPracticeDate.toString()))
-            details()
-            println("")
+        show()
+        update(LocalDateTime.parse(nextPracticeDate.toString()))
+        details()
+        println("")
 
     }
 
-    fun isDue(date:LocalDateTime) = date.dayOfYear >= nextPracticeDate.dayOfYear
+    fun isDue(date:LocalDateTime) = date.dayOfYear >= LocalDateTime.parse(nextPracticeDate).dayOfYear
 
     fun establecerDetalles(pdate: String,pid:String,peasiness:String,prepetitions:String,pinterval:String,pnextPracticeDay:String){
         date = pdate
@@ -91,7 +100,7 @@ open class Card(
         easiness = peasiness.toDoubleOrNull()?:2.5
         repetitions = prepetitions.toIntOrNull()?:0
         interval = pinterval.toLongOrNull()?:1L
-        nextPracticeDate = LocalDateTime.parse(pnextPracticeDay, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnnnnn"))
+        nextPracticeDate = pnextPracticeDay
     }
 
     companion object {
@@ -99,7 +108,7 @@ open class Card(
             var listacadena = cad.split("|")
             var questionP = listacadena[1]
             var answerP = listacadena[2]
-            var c =Card(questionP,answerP)
+            var c =Card(questionP,answerP,5) // CAMBIAR
             println("${c.question} , ${c.answer}")
             c.establecerDetalles(listacadena[3],listacadena[4],listacadena[5],listacadena[6],listacadena[7],listacadena[8])
             return c
@@ -133,8 +142,6 @@ open class Card(
             cadena = "Repetitions: "+this.repetitions
         } else if (detail == 3){
             cadena = "Interval: "+this.interval
-        } else if (detail == 4){
-            cadena = "Dia siguiente: "+this.nextPracticeDate.toString().substring(0,10)
         }
         return cadena
     }

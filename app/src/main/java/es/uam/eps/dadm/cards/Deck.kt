@@ -1,4 +1,7 @@
 package es.uam.eps.dadm.cards
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.File
 import java.io.InputStream
 import java.time.LocalDateTime
@@ -6,9 +9,15 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
-    var cards: MutableList<Card> = mutableListOf()
-
+@Entity(tableName = "decks_table")
+class Deck(
+    @PrimaryKey
+    var id: Long,
+    @ColumnInfo(name = "deck_name")
+    var name:String
+) {
+    //var cards: MutableList<Card> = mutableListOf()
+/**
     fun addCard(card:Card){
 
         /**
@@ -34,7 +43,7 @@ class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
             }
         }
         */
-        cards.add(Card(card.question,card.answer))
+        //cards.add(Card(card.question,card.answer))
         println("Tarjeta añadida correctamente")
 
     }
@@ -60,16 +69,16 @@ class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
         }
     }
 
-    fun cloneDeck(deckOriginal:Deck){
-        deckOriginal.cards.forEach{
-            if (it.javaClass.toString() == "class Cloze"){
-                cards.add(Cloze(it.question,it.answer))
-            }else {
-                cards.add(Card(it.question,it.answer))
-            }
+  //  fun cloneDeck(deckOriginal:Deck){
+   //     deckOriginal.cards.forEach{
+   //         if (it.javaClass.toString() == "class Cloze"){
+   //             cards.add(Cloze(it.question,it.answer))
+   //         }else {
+  //              cards.add(Card(it.question,it.answer))
+  //          }
 
-        }
-    }
+  //      }
+ //   }
 
     fun removeDeck(){
         cards.removeAll(cards)
@@ -123,5 +132,5 @@ class Deck(var name:String, var id: String = UUID.randomUUID().toString()) {
         return "Cartas por estudiar: "+counter
     }
 
-
+*/
 }

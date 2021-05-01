@@ -61,7 +61,7 @@ class StudyFragment : Fragment() {
                 container,
                 false)
         binding.studyViewModel = viewModel // Va a usar view model
-
+        binding.lifecycleOwner = this
         val listener = View.OnClickListener { v ->
             // Asigna a quality el valor 0, 3 o 5,
             // dependiendo del botón que se haya pulsado
@@ -83,7 +83,11 @@ class StudyFragment : Fragment() {
             binding.invalidateAll()
         }
 
-
+        // Observador de duecard
+        viewModel.dueCard.observe(viewLifecycleOwner,Observer{
+            viewModel.card = it
+            binding.invalidateAll()
+        })
 
 
 

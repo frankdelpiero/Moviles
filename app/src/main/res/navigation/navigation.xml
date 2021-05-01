@@ -35,7 +35,7 @@
             app:destination="@id/cardEditFragment" />
         <argument
             android:name="idMazo"
-            app:argType="string" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
@@ -51,7 +51,7 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="idMazo"
-            app:argType="string" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

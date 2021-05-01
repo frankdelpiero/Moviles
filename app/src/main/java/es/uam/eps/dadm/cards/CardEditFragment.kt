@@ -9,16 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import es.uam.eps.dadm.cards.databinding.FragmentCardEditBinding
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import timber.log.Timber
+import java.util.concurrent.Executors
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var card:Card
+//private lateinit var card:Card
 /**
  * A simple [Fragment] subclass.
  * Use the [CardEditFragment.newInstance] factory method to
@@ -30,12 +33,14 @@ class CardEditFragment : Fragment() {
     private var param2: String? = null
     private lateinit var card:Card
     private lateinit var cardId:String
-    private lateinit var deckId:String
+    var deckId = 1L
     lateinit var question:String
     lateinit var answer:String
-
+    private val executor = Executors.newSingleThreadExecutor()
     private lateinit var binding:FragmentCardEditBinding
-
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(CardEditViewModel::class.java)
+    }
     override fun onStart() {
         super.onStart()
         val questionTextWatcher = object: TextWatcher{
@@ -67,6 +72,11 @@ class CardEditFragment : Fragment() {
         binding.acceptCardEditButton.setOnClickListener{
             card.question = question
             card.answer = answer
+            executor.execute{
+                //context?.let { CardDatabase.getInstance(it).cardDao.update(card) }
+                //Actualiza la tarjeta
+                viewModel.getContext.update(card)
+            }
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 
@@ -97,10 +107,20 @@ class CardEditFragment : Fragment() {
         val args = CardEditFragmentArgs.fromBundle(requireArguments())
         cardId = args.cardId
         deckId = args.idMazo
+        viewModel.loadCardId(args.cardId)
+        viewModel.card.observe(viewLifecycleOwner) {
+            card = it
+            binding.card = card
+            question = card.question
+            answer = card.answer
+        }
+        /**
         card = CardsApplication.getCard(cardId,deckId)
         binding.card = card
         question = card.question
         answer = card.answer
+         */
+
         return binding.root
     }
 

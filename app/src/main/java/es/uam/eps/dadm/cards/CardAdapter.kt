@@ -18,14 +18,17 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
             notifyDataSetChanged()
         }
 
-    var dataDeck = listOf<String>()
-
+    var dataDeck = listOf<Long>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     lateinit var binding: ListItemCardBinding
 
    inner class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var card: Card
-       lateinit var deckId:  String
-        fun bind(card: Card,deckId:String) {
+       var deckId = 1L
+        fun bind(card: Card,deckId:Long) {
             this.card=card
             this.deckId=deckId
             binding.card = card
