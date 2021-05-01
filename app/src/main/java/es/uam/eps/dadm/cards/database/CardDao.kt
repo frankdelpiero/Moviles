@@ -39,4 +39,14 @@ interface CardDao {
     @Query("SELECT * FROM decks_table WHERE id = :id")
     fun getDeck(id: Long): LiveData<Deck> //He quitado la interrogacion
 
+
+    @Query("DELETE FROM decks_table WHERE deck_name = :name")
+    fun deleteDeckByName(name: String)
+
+    @Query("DELETE FROM cards_table WHERE cards_table.card_question = :name and cards_table.deckId = :idDeck")
+    fun deleteCardOfDeck(name:String,idDeck: Long)
+
+    //@Query("DELETE  FROM  (cards_table join decks_table ON  cards_table.deckId =  decks_table.id)  where deck_name = :name")
+    //fun deleteCardsOfDeck(name:String)
+
 }

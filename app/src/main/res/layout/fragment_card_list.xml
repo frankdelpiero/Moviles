@@ -26,6 +26,17 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_add_black_24dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/delete_card_fab"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_launcher_background" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 
 </layout>

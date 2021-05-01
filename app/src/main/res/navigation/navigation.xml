@@ -36,6 +36,9 @@
         <argument
             android:name="idMazo"
             app:argType="long" />
+        <action
+            android:id="@+id/action_cardListFragment_to_cardDeleteFragment2"
+            app:destination="@id/cardDeleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
@@ -69,6 +72,9 @@
         <action
             android:id="@+id/action_deckListFragment2_to_deckEditFragment"
             app:destination="@id/deckEditFragment" />
+        <action
+            android:id="@+id/action_deckListFragment2_to_deckDeleteFragment"
+            app:destination="@id/deckDeleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/deckEditFragment"
@@ -81,6 +87,27 @@
         <action
             android:id="@+id/action_deckEditFragment_to_deckListFragment2"
             app:destination="@id/deckListFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/deckDeleteFragment"
+        android:name="es.uam.eps.dadm.cards.DeckDeleteFragment"
+        tools:layout="@layout/fragment_deck_delete"
+        android:label="DeckDeleteFragment" >
+        <action
+            android:id="@+id/action_deckDeleteFragment_to_deckListFragment2"
+            app:destination="@id/deckListFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardDeleteFragment"
+        android:name="es.uam.eps.dadm.cards.CardDeleteFragment"
+        tools:layout="@layout/fragment_card_delete"
+        android:label="CardDeleteFragment" >
+        <argument
+            android:name="idMazo"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_cardDeleteFragment_to_cardListFragment3"
+            app:destination="@id/cardListFragment" />
     </fragment>
 
 </navigation>

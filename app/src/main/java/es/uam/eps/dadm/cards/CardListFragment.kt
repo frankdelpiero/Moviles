@@ -71,7 +71,9 @@ class CardListFragment: Fragment(){
             }
             it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,args.idMazo))
         }
-
+        binding.deleteCardFab?.setOnClickListener{
+            it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardDeleteFragment2(args.idMazo))
+        }
        cardListViewModel.getContext.getTypeDeckCard(args.idMazo).observe(
            viewLifecycleOwner,
            Observer {

@@ -71,8 +71,12 @@ class DeckListFragment:Fragment() {
             it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckEditFragment(deck.id)) // Navegamos a decKEditFraagment
 
             //navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,args.idMazo))
-
         }
+
+        binding.deleteDeckFab.setOnClickListener{
+            it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckDeleteFragment())
+        }
+
         return binding.root
 
 
