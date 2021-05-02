@@ -1,9 +1,7 @@
 package es.uam.eps.dadm.cards
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
-import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.time.LocalDateTime
 import java.util.concurrent.Executors
@@ -22,6 +19,23 @@ class CardListFragment: Fragment(){
     private lateinit var adapter: CardAdapter // Instancio el adaptador
     private val executor = Executors.newSingleThreadExecutor()
 
+    // Infla el menu del fichero
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        // Pasa el identificador del fichero
+        inflater.inflate(R.menu.fragment_card_list, menu)
+    }
+    // Responde a las pulsaciones de los items
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.settings -> {
+                // Aquí irá el código para arrancar las preferencias de Cards
+
+            }
+        }
+        return true
+    }
+
     // Añado un nuevo viewmodel instanciandolo
     private val cardListViewModel  by lazy {
         ViewModelProvider(this).get( CardListViewModel::class.java)
@@ -29,6 +43,7 @@ class CardListFragment: Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)  // Para hacer aparecer la barra
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +92,6 @@ class CardListFragment: Fragment(){
        cardListViewModel.getContext.getTypeDeckCard(args.idMazo).observe(
            viewLifecycleOwner,
            Observer {
-               Timber.i("QUE TE APUESTAS")
                adapter.data = it // Ira cambiando cada vez que se recibe una tarjeta
                adapter.notifyDataSetChanged()
            }

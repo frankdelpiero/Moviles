@@ -25,5 +25,5 @@
     <string name="show_cards_of_deck">Show decks cards</string>
     <string name="authorname">Franccy del Piero Sambrano Ganoza</string>
     <string name="description">This application was created follow Encode instructions. His functioning is very sample. When you enter to application if you displace to rigth  you find a penel whose function is navigaate around all the functionality </string>
-
+    <string name="settings">Settings</string>
 </resources>

@@ -23,7 +23,7 @@ class TitleActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(
                 binding.navView,
                 findNavController(R.id.navHostFragment))
-        supportActionBar?.hide()
+        //supportActionBar?.hide()
         var fragment = supportFragmentManager //Lista de fragmentos
                 .findFragmentById(R.id.navHostFragment)
 
