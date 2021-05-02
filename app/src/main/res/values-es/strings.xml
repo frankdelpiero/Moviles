@@ -27,4 +27,15 @@
     <string name="authorname">Franccy del Piero Sambrano Ganoza</string>
     <string name="description">Esta aplicacion fue creada gracias a Encode. Su funcionamiento es muy simple. Nada mas entrar en la aplicacion si desplazamos a la derecha encontraremos un panel que nos llevara alrededor de los programas </string>
     <string name="settings">Ajustes</string>
+    <string name="title_activity_settings">Configuracion</string>
+    <!-- Preference Titles -->
+    <string name="decks_header">Mazos</string>
+
+    <!-- Maximum number of cards Preferences -->
+    <string name="max_number_cards">Maximo numero de cartas</string>
+
+    <!-- Board Preferences -->
+    <string name="board_title">Mostrar tablero</string>
+    <string name="board_summary_on">Tablero disponible</string>
+    <string name="board_summary_off">Tablero no disponible</string>
 </resources>

@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -30,7 +31,7 @@ class CardListFragment: Fragment(){
         when (item.itemId) {
             R.id.settings -> {
                 // Aquí irá el código para arrancar las preferencias de Cards
-
+                startActivity(Intent(activity,SettingsActivity::class.java))
             }
         }
         return true
@@ -44,6 +45,7 @@ class CardListFragment: Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)  // Para hacer aparecer la barra
+
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +56,8 @@ class CardListFragment: Fragment(){
                  R.layout.fragment_card_list,
                  container,
                  false)
-        //
+        // REFERENCIA A SETMAXIMUMNUMBERCARDS
+
         var args = CardListFragmentArgs.fromBundle(requireArguments())
         Timber.i("EL ID DEL MAZO PASADO ES ${args.idMazo}")
         var deck =  cardListViewModel.getContext.getDeck(args.idMazo)
