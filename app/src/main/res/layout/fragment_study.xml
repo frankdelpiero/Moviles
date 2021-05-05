@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="studyViewModel"
-            type="es.uam.eps.dadm.cards.StudyViewModel" />
+            type="es.uam.eps.dadm.cardsFranccySambrano.StudyViewModel" />
     </data>
 
     <RelativeLayout

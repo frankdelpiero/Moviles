@@ -6,7 +6,7 @@
     app:startDestination="@id/titleFragment">
     <fragment
         android:id="@+id/titleFragment"
-        android:name="es.uam.eps.dadm.cards.TitleFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.TitleFragment"
         android:label="TitleFragment"
         tools:layout="@layout/fragment_title">
         <action
@@ -18,13 +18,13 @@
     </fragment>
     <fragment
         android:id="@+id/studyFragment2"
-        android:name="es.uam.eps.dadm.cards.StudyFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.StudyFragment"
         android:label="StudyFragment"
         tools:layout="@layout/fragment_study"
         />
     <fragment
         android:id="@+id/cardListFragment"
-        android:name="es.uam.eps.dadm.cards.CardListFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.CardListFragment"
         android:label="CardListFragment"
         tools:layout="@layout/fragment_card_list">
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
-        android:name="es.uam.eps.dadm.cards.CardEditFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.CardEditFragment"
         android:label="CardEditFragment">
         <argument
             android:name="cardId"
@@ -58,12 +58,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="es.uam.eps.dadm.cards.AboutFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/deckListFragment2"
-        android:name="es.uam.eps.dadm.cards.DeckListFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.DeckListFragment"
         android:label="DeckListFragment"
         tools:layout="@layout/fragment_deck_list">
         <action
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/deckEditFragment"
-        android:name="es.uam.eps.dadm.cards.DeckEditFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.DeckEditFragment"
         tools:layout="@layout/fragment_deck_list"
         android:label="DeckEditFragment" >
         <argument
@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/deckDeleteFragment"
-        android:name="es.uam.eps.dadm.cards.DeckDeleteFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.DeckDeleteFragment"
         tools:layout="@layout/fragment_deck_delete"
         android:label="DeckDeleteFragment" >
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardDeleteFragment"
-        android:name="es.uam.eps.dadm.cards.CardDeleteFragment"
+        android:name="es.uam.eps.dadm.cardsFranccySambrano.CardDeleteFragment"
         tools:layout="@layout/fragment_card_delete"
         android:label="CardDeleteFragment" >
         <argument

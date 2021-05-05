@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "51240184518",
+    "project_id": "franccysambranoganozacards",
+    "storage_bucket": "franccysambranoganozacards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51240184518:android:79946d725a1c2ca4d405c7",
+        "android_client_info": {
+          "package_name": "es.uam.eps.dadm.cardsFranccySambrano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51240184518-uhqcsnituda3k8tjungmcqr8o2th28lc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.uam.eps.dadm.cardsFranccySambrano",
+            "certificate_hash": "e4bc9e1d1887cd4be65bf34bbd7f08c6db8e8969"
+          }
+        },
+        {
+          "client_id": "51240184518-2gehsi44s3fd1885o4e1ih2tpkq606nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA95B4Z_bqfgRfr6BMVc-A77veN35ukCws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51240184518-2gehsi44s3fd1885o4e1ih2tpkq606nh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

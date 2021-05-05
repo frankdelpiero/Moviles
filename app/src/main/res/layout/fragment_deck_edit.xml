@@ -5,7 +5,7 @@
         <import type="android.view.View"/>
         <variable
             name="deck"
-            type="es.uam.eps.dadm.cards.Deck" />
+            type="es.uam.eps.dadm.cardsFranccySambrano.Deck" />
     </data>
 
     <RelativeLayout

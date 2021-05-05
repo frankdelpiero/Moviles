@@ -2,14 +2,14 @@
     apply plugin: 'kotlin-android'
     apply plugin: 'androidx.navigation.safeargs.kotlin'
     apply plugin: 'kotlin-kapt'
-
+    apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "es.uam.eps.dadm.cards"
+        applicationId "es.uam.eps.dadm.cardsFranccySambrano"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -58,5 +58,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.1'
+    implementation 'com.google.firebase:firebase-database:19.7.0'
 
 }
