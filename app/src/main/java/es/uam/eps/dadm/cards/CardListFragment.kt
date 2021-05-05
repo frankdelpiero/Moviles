@@ -58,6 +58,9 @@ class CardListFragment: Fragment(){
                  false)
         // REFERENCIA A SETMAXIMUMNUMBERCARDS
 
+        Timber.i("PREFERENCIA")
+        Timber.i(context?.let { SettingsActivity.getMaximumNumberOfCards(it) })
+
         var args = CardListFragmentArgs.fromBundle(requireArguments())
         Timber.i("EL ID DEL MAZO PASADO ES ${args.idMazo}")
         var deck =  cardListViewModel.getContext.getDeck(args.idMazo)
