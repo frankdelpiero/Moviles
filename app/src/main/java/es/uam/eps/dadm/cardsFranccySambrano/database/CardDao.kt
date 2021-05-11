@@ -49,4 +49,5 @@ interface CardDao {
     //@Query("DELETE  FROM  (cards_table join decks_table ON  cards_table.deckId =  decks_table.id)  where deck_name = :name")
     //fun deleteCardsOfDeck(name:String)
 
+
 }

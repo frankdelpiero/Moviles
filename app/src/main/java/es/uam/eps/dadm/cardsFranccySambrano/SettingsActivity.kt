@@ -43,5 +43,9 @@ class SettingsActivity : AppCompatActivity() {
             editor.putString(SettingsActivity.MAXIMUM_KEY, max)
             editor.commit ()
         }
+
+        fun getValueBoard(context: Context):Boolean?{
+            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("board",false)
+        }
     }
 }

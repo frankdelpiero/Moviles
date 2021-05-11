@@ -30,6 +30,15 @@ open class Card(
     var easiness: Double = 2.5
     //var nowaux:LocalDateTime = LocalDateTime.now()
     var answered = false
+
+    constructor() : this(
+        "Pregunta",
+        "Respuesta",
+        1,
+        LocalDateTime.now().toString(),
+        UUID.randomUUID().toString()
+    )
+
     open fun show(){
 
         /**var respuestaDificultad =0

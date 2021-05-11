@@ -60,6 +60,12 @@ class StudyFragment : Fragment() {
                 false)
         binding.studyViewModel = viewModel // Va a usar view model
         binding.lifecycleOwner = this
+        val showBoard = context?.let {  SettingsActivity.getValueBoard(it) }
+        if (showBoard == true){
+            binding.board.visibility = View.VISIBLE
+        } else{
+            binding.board.visibility = View.INVISIBLE
+        }
         val listener = View.OnClickListener { v ->
             // Asigna a quality el valor 0, 3 o 5,
             // dependiendo del botón que se haya pulsado

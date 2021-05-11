@@ -35,6 +35,14 @@
             android:text="@{@string/cards_left_format(studyViewModel.cardsLeft)}"
             tools:text="Número de tarjetas restantes" />
 
+        <es.uam.eps.dadm.cardsFranccySambrano.BoardView
+            android:id="@+id/board"
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/teal_200"
+            ></es.uam.eps.dadm.cardsFranccySambrano.BoardView>
+
 
         <TextView
             android:id="@+id/answer_text_view"

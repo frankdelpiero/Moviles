@@ -13,6 +13,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardEditBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardListBinding
+import timber.log.Timber
 import java.util.concurrent.Executors
 
 // TODO: Rename parameter arguments, choose names that match
