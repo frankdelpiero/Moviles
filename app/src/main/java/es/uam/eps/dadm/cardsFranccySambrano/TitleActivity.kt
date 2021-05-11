@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.ActivityTitleBinding
+import timber.log.Timber
 
 class TitleActivity : AppCompatActivity() {
     lateinit var binding: ActivityTitleBinding
@@ -58,11 +60,12 @@ class TitleActivity : AppCompatActivity() {
                     .commit()
         }
     }
-    private fun getUserProfile() {
+    fun getUserProfile() {
         // [START get_user_profile]
         val user = Firebase.auth.currentUser
         user?.let {
             val name = user.displayName
+            Timber.i("EEKEDJE ${user.email}")
             val email = user.email
 
             // Check if user's email is verified

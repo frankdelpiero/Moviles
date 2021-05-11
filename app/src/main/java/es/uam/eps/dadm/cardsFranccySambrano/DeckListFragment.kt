@@ -1,4 +1,5 @@
 package es.uam.eps.dadm.cardsFranccySambrano
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentDeckListBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentTitleBinding
@@ -17,6 +22,8 @@ import java.util.concurrent.Executors
 class DeckListFragment:Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private lateinit var adapter: DeckAdapter // Instancio el adaptador
+    private lateinit var userSession: Session
+    private lateinit var intentt: Intent
     private var deckIDMax = 1L
     private val executor = Executors.newSingleThreadExecutor()
     private val deckListViewModel  by lazy {
@@ -24,6 +31,9 @@ class DeckListFragment:Fragment() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intentt = Intent(context, EmailPasswordActivity::class.java)
+
+        userSession = Session(Firebase.auth.currentUser.email,"")
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +82,12 @@ class DeckListFragment:Fragment() {
 
         binding.deleteDeckFab.setOnClickListener{
             it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckDeleteFragment())
+        }
+
+        binding.signOutFab.setOnClickListener{
+            Timber.i("Desconectando a ${userSession.username}")
+            FirebaseAuth.getInstance().signOut()
+            startActivity(intentt)
         }
 
         return binding.root

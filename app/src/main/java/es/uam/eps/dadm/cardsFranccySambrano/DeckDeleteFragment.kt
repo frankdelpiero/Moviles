@@ -60,6 +60,8 @@ class DeckDeleteFragment : Fragment() {
                 //context?.let { CardDatabase.getInstance(it).cardDao.update(card) }
                 //Actualiza el mazo
                 //viewModel.getContext.deleteCardsOfDeck(name)
+                var idDeck = viewModel.getContext.getIDdeck(name)
+                viewModel.getContext.deleteAllDecksById(idDeck)
                 viewModel.getContext.deleteDeckByName(name)
             }
             it.findNavController().navigate(DeckDeleteFragmentDirections.actionDeckDeleteFragmentToDeckListFragment2())

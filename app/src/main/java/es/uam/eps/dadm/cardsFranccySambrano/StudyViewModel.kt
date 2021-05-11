@@ -12,12 +12,20 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
     private val executor = Executors.newSingleThreadExecutor()
     private val context = getApplication<Application>().applicationContext
     var card:Card? = null
+    var number = 5
     //var cards: MutableList<Card> = mutableListOf<Card>()
     var cards:LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards() //Lista de cartas
     var dueCard: LiveData<Card?> =
-        Transformations.map(cards, ::due) // Siguiente carta
+        Transformations.map(cards,::due) // Siguiente carta
     private fun due(cards: List<Card>) = try { // Aplica el metdo random
-        cards.filter { card -> card.isDue(LocalDateTime.now()) }.random()
+       // if (number > 0){
+         //   Timber.i("PREGUNTAS RESTANTES $number")
+           // number -= 1
+            cards.filter { card -> card.isDue(LocalDateTime.now()) }.random()
+        //} else{
+          //  null
+        //}
+
     } catch (e: Exception) {
         null
     }
@@ -32,6 +40,8 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
 
     init {
         Timber.i("MainViewModel created")
+        var preferenceNumberCards = context?.let { SettingsActivity.getMaximumNumberOfCards(it) }
+        number = preferenceNumberCards!!.toInt()
         //var deckList = CardsApplication.getDeck()
         //for (itdeck in deckList){
         //    for (itcard in itdeck.cards){

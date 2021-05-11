@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="session"
+            type="es.uam.eps.dadm.cardsFranccySambrano.Session" />
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -34,6 +40,23 @@
             android:layout_marginRight="200dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_launcher_foreground" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/signOut_fab"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/abc_vector_test" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="20dp"
+                android:text="@{session.username}"
+                android:textSize="40dp"
+                ></TextView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </layout>

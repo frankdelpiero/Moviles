@@ -69,6 +69,10 @@ class DeckEditFragment : Fragment() {
                     //.navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 
         }
+        // Cancelo la opcion y paso directamente al menu de mazos
+        binding.cancelDeckEditButton.setOnClickListener{
+            it.findNavController().navigate(DeckEditFragmentDirections.actionDeckEditFragmentToDeckListFragment2())
+        }
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
