@@ -1,4 +1,5 @@
 package es.uam.eps.dadm.cardsFranccySambrano
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -13,18 +15,23 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import es.uam.eps.dadm.cardsFranccySambrano.database.CardDatabase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentDeckListBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
-
+private const val DATABASENAME = "tarjetas"
 class DeckListFragment:Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private lateinit var adapter: DeckAdapter // Instancio el adaptador
     private lateinit var userSession: Session
     private lateinit var intentt: Intent
     private var deckIDMax = 1L
+    // Añadir tarjetas a Firebase
+    private var reference = FirebaseDatabase
+            .getInstance()
+            .getReference(DATABASENAME)
     private val executor = Executors.newSingleThreadExecutor()
     private val deckListViewModel  by lazy {
         ViewModelProvider(this).get( DeckListViewModel::class.java)
@@ -54,6 +61,12 @@ class DeckListFragment:Fragment() {
                 }
             )
         binding.cardRecyclerViewDeck.adapter = adapter
+        deckListViewModel.cardsToUpdater.observe( viewLifecycleOwner,Observer {
+          binding.invalidateAll()
+        })
+
+
+
         /**binding.buttonQuestion.setOnClickListener { view ->
         if (CardsApplication.numberOfCardsLeft()  > 0)
         view.findNavController().navigate(R.id.action_cardListFragment_to_studyFragment2)
@@ -86,6 +99,14 @@ class DeckListFragment:Fragment() {
             Timber.i("Desconectando a ${userSession.username}")
             FirebaseAuth.getInstance().signOut()
             startActivity(intentt)
+        }
+
+        binding.updateFab.setOnClickListener{
+            Timber.i("Subiendo cartas...")
+            for (c in deckListViewModel.cardsToUpdater.value!!){
+                Timber.i("CARTA ${c.question} y ${c.answer}")
+                reference.child(c.id).setValue(c)
+            }
         }
 
         return binding.root

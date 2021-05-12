@@ -48,14 +48,13 @@
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="80dp"
             android:src="@drawable/abc_vector_test" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginBottom="20dp"
-                android:text="@{session.username}"
-                android:textSize="40dp"
-                ></TextView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/update_fab"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:src="@drawable/ic_baseline_play_circle_filled_24_foreground" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

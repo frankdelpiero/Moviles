@@ -81,7 +81,7 @@ class CardEditFragment : Fragment() {
                 //Actualiza la tarjeta
                 viewModel.getContext.update(card)
             }
-            reference.child(card.id).setValue(card) // Añade la carta a Firebase
+            // reference.child(card.id).setValue(card) // Añade la carta a Firebase
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 

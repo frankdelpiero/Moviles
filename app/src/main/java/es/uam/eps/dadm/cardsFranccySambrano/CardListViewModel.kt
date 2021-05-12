@@ -12,7 +12,7 @@ class CardListViewModel(application: Application)
 
     val context = getApplication<Application>().applicationContext
     //Obtener las referencias para obtener la lista de cartas
-    val cards: LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid)
+    val cards: LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid!!)
 
     val getContext = CardDatabase.getInstance(context).cardDao
 

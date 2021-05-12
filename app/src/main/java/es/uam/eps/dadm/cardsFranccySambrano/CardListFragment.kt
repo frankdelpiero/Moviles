@@ -96,7 +96,7 @@ class CardListFragment: Fragment(){
             }
             Timber.i("ID DE LA CARTA: ${card.id}")
             Timber.i("ID DEL MAZO: ${args.idMazo}")
-            reference.child(card.id).setValue(card) // Añade la carta a Firebase
+           // reference.child(card.id).setValue(card) // Añade la carta a Firebase
             it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,args.idMazo))
         }
         binding.deleteCardFab?.setOnClickListener{
@@ -110,6 +110,7 @@ class CardListFragment: Fragment(){
                adapter.notifyDataSetChanged()
            }
        )
+
         // OBTENGO TODAS LAS CARTAS
        /** cardListViewModel.cards.observe(
             viewLifecycleOwner,

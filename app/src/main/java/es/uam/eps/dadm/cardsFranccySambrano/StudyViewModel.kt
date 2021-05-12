@@ -16,7 +16,7 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
     var card:Card? = null
     var number = 5
     //var cards: MutableList<Card> = mutableListOf<Card>()
-    var cards:LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid) //Lista de cartas
+    var cards:LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid!!) //Lista de cartas
     var dueCard: LiveData<Card?> =
         Transformations.map(cards,::due) // Siguiente carta
     private fun due(cards: List<Card>) = try { // Aplica el metdo random
