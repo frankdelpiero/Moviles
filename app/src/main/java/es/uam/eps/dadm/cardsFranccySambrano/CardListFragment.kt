@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.database.CardDatabase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardListBinding
 import timber.log.Timber
@@ -67,7 +69,7 @@ class CardListFragment: Fragment(){
         Timber.i(context?.let { SettingsActivity.getMaximumNumberOfCards(it) })
 
         var args = CardListFragmentArgs.fromBundle(requireArguments())
-        var deck =  cardListViewModel.getContext.getDeck(args.idMazo)
+        var deck =  cardListViewModel.getContext.getDeck(args.idMazo,Firebase.auth.currentUser.uid)
         //
         adapter = CardAdapter() // Creamos el adaptador
         // adapter.data = deck.cards // Lista de cartas de un almacen en especifico
@@ -85,7 +87,7 @@ class CardListFragment: Fragment(){
          }*/
         //Escuchador que agrega una nueva carta y accede al panel para editarlo
         binding.newCardFab.setOnClickListener{
-            val card = Card("","",args.idMazo)
+            val card = Card("","",args.idMazo,userID = Firebase.auth.currentUser.uid)
             //CardsApplication.addCard(card,deck.id) // Añado la carta a un ID en especifico
             //CardsApplication.addCard(card)
             executor.execute{
@@ -100,7 +102,8 @@ class CardListFragment: Fragment(){
         binding.deleteCardFab?.setOnClickListener{
             it.findNavController().navigate(CardListFragmentDirections.actionCardListFragmentToCardDeleteFragment2(args.idMazo))
         }
-       cardListViewModel.getContext.getTypeDeckCard(args.idMazo).observe(
+        Timber.i("EL USUARIO ACTUAL ES ${Firebase.auth.currentUser.uid} ")
+       cardListViewModel.getContext.getTypeDeckCard(args.idMazo,Firebase.auth.currentUser.uid).observe(
            viewLifecycleOwner,
            Observer {
                adapter.data = it // Ira cambiando cada vez que se recibe una tarjeta

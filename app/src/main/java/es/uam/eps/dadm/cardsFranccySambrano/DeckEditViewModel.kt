@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.database.CardDatabase
 
 class DeckEditViewModel (application: Application): AndroidViewModel(application) {
@@ -14,7 +16,7 @@ class DeckEditViewModel (application: Application): AndroidViewModel(application
 
 
     val deck: LiveData<Deck> = Transformations.switchMap(deckId) {
-        CardDatabase.getInstance(context).cardDao.getDeck(it)
+        CardDatabase.getInstance(context).cardDao.getDeck( it,userID = Firebase.auth.currentUser.uid)
     }
 
     val getContext = CardDatabase.getInstance(context).cardDao

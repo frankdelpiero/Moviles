@@ -50,11 +50,9 @@ class DeckListFragment:Fragment() {
         deckListViewModel.decks.observe(
                 viewLifecycleOwner,
                 Observer {
-                    Timber.i("SIN ALGO ${it}")
                     adapter.data = it // Ira cambiando cada vez que se recibe una tarjeta
                 }
             )
-        Timber.i("EEDSDSA ${adapter.data}")
         binding.cardRecyclerViewDeck.adapter = adapter
         /**binding.buttonQuestion.setOnClickListener { view ->
         if (CardsApplication.numberOfCardsLeft()  > 0)
@@ -71,7 +69,7 @@ class DeckListFragment:Fragment() {
          */
         binding.newDeckFab.setOnClickListener{
 
-            val deck = Deck(name = "")
+            val deck = Deck(name = "",userID = Firebase.auth.currentUser.uid)
             executor.execute {
                 deckListViewModel.cardDao.addDeck(deck)
             }

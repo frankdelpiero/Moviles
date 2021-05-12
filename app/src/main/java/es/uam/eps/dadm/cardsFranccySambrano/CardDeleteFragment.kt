@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardDeleteBinding
 import java.util.concurrent.Executors
 
@@ -61,7 +63,8 @@ class CardDeleteFragment : Fragment() {
                 //Actualiza el mazo
                 //viewModel.getContext.deleteCardsOfDeck(name)
                 //viewModel.getContext.deleteDeckByName(name)
-                viewModel.getContext.deleteCardOfDeck(name,deckId)
+                Firebase.auth.currentUser.uid
+                viewModel.getContext.deleteCardOfDeck(name,deckId,Firebase.auth.currentUser.uid)
             }
             it.findNavController().navigate(CardDeleteFragmentDirections.actionCardDeleteFragmentToCardListFragment3(deckId))
             //it.findNavController().navigate(CardDeleteFragmen)

@@ -1,6 +1,8 @@
 package es.uam.eps.dadm.cardsFranccySambrano
 
 import android.app.Application
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.database.CardDatabase
 import timber.log.Timber
 import java.util.concurrent.Executors
@@ -23,13 +25,13 @@ class CardsApplication: Application() {
         Timber.plant(Timber.DebugTree())
         val cardDatabase = CardDatabase.getInstance(context = this)
         executor.execute{
-            cardDatabase.cardDao.addDeck(Deck(1, "Inglés"))
-            cardDatabase.cardDao.addDeck(Deck(2, "Francés"))
-            cardDatabase.cardDao.addDeck(Deck(3,"Japones"))
-            cardDatabase.cardDao.addCard(Card("To wake up", "Despertarse", deckId = 1))
-            cardDatabase.cardDao.addCard(Card("To give in", "Dar el brazo a torcer", deckId = 1))
-            cardDatabase.cardDao.addCard(Card("Coche", "Voiture", deckId = 2))
-            cardDatabase.cardDao.addCard(Card("Arigato", "Gracias", deckId = 3))
+           // cardDatabase.cardDao.addDeck(Deck(1, "Inglés"))
+           // cardDatabase.cardDao.addDeck(Deck(2, "Francés"))
+           // cardDatabase.cardDao.addDeck(Deck(3,"Japones"))
+           // cardDatabase.cardDao.addCard(Card("To wake up", "Despertarse", deckId = 1, userID = Firebase.auth.currentUser.uid))
+           // cardDatabase.cardDao.addCard(Card("To give in", "Dar el brazo a torcer", deckId = 1,userID=Firebase.auth.currentUser.uid))
+           // cardDatabase.cardDao.addCard(Card("Coche", "Voiture", deckId = 2,userID = Firebase.auth.currentUser.uid))
+           // cardDatabase.cardDao.addCard(Card("Arigato", "Gracias", deckId = 3, userID =  Firebase.auth.currentUser.uid))
         }
 
     }

@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 import java.time.LocalDateTime
 import java.util.*
@@ -18,6 +20,8 @@ open class Card(
     @ColumnInfo(name = "card_answer")
     open var answer: String,
     var deckId:Long,
+    @ColumnInfo(name= "userid")
+    var userID: String,
     @ColumnInfo(name = "card_date")
     var date: String = LocalDateTime.now().toString(),
     @PrimaryKey
@@ -35,8 +39,9 @@ open class Card(
         "Pregunta",
         "Respuesta",
         1,
+            Firebase.auth.currentUser.uid,
         LocalDateTime.now().toString(),
-        UUID.randomUUID().toString()
+        UUID.randomUUID().toString(),
     )
 
     open fun show(){
@@ -113,7 +118,7 @@ open class Card(
             var listacadena = cad.split("|")
             var questionP = listacadena[1]
             var answerP = listacadena[2]
-            var c =Card(questionP,answerP,5) // CAMBIAR
+            var c =Card(questionP,answerP,5,"e") // CAMBIAR
             println("${c.question} , ${c.answer}")
             c.establecerDetalles(listacadena[3],listacadena[4],listacadena[5],listacadena[6],listacadena[7],listacadena[8])
             return c

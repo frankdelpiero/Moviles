@@ -3,6 +3,8 @@ package es.uam.eps.dadm.cardsFranccySambrano
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cardsFranccySambrano.database.CardDatabase
 import timber.log.Timber
 import java.time.LocalDateTime
@@ -14,7 +16,7 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
     var card:Card? = null
     var number = 5
     //var cards: MutableList<Card> = mutableListOf<Card>()
-    var cards:LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards() //Lista de cartas
+    var cards:LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid) //Lista de cartas
     var dueCard: LiveData<Card?> =
         Transformations.map(cards,::due) // Siguiente carta
     private fun due(cards: List<Card>) = try { // Aplica el metdo random

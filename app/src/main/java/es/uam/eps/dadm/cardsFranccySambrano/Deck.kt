@@ -9,7 +9,9 @@ class Deck(
         @PrimaryKey
     var id: Long = Random.nextLong(0, Long.MAX_VALUE),
         @ColumnInfo(name = "deck_name")
-    var name:String
+    var name:String,
+        @ColumnInfo(name = "deck_user")
+    var userID:String
 ) {
     //var cards: MutableList<Card> = mutableListOf()
 
