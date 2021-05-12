@@ -11,11 +11,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
+import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardEditBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentCardListBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
-
+private const val DATABASENAME = "tarjetas"
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -36,6 +37,10 @@ class CardEditFragment : Fragment() {
     lateinit var question:String
     lateinit var answer:String
     private val executor = Executors.newSingleThreadExecutor()
+    // Añadir tarjetas a Firebase
+    private var reference = FirebaseDatabase
+            .getInstance()
+            .getReference(DATABASENAME)
     private lateinit var binding:FragmentCardEditBinding
     private val viewModel by lazy {
         ViewModelProvider(this).get(CardEditViewModel::class.java)
@@ -76,6 +81,7 @@ class CardEditFragment : Fragment() {
                 //Actualiza la tarjeta
                 viewModel.getContext.update(card)
             }
+            reference.child(card.id).setValue(card) // Añade la carta a Firebase
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 

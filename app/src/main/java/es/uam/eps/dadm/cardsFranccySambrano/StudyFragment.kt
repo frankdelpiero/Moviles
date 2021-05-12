@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.ActivityStudyBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentStudyBinding
 import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentTitleBinding
@@ -18,7 +19,7 @@ import timber.log.Timber
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+private const val DATABASENAME = "tarjetas"
 /**
  * A simple [Fragment] subclass.
  * Use the [StudyFragment.newInstance] factory method to
@@ -28,7 +29,9 @@ class StudyFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var reference = FirebaseDatabase
+            .getInstance()
+            .getReference(DATABASENAME)
     private val viewModel: StudyViewModel by lazy { //Instancia de view model
         ViewModelProvider(this).get(StudyViewModel::class.java)
     }
@@ -81,6 +84,7 @@ class StudyFragment : Fragment() {
             // Si la propiedad card de viewModel es null
             // informa al usuario mediante un Toast de que
             // no quedan tarjetas
+            reference.child(viewModel.card!!.id).setValue(viewModel.card) // Añade la carta a Firebase
             if (viewModel.card == null){
                 Toast.makeText(v.context,R.string.No_cards, Toast.LENGTH_LONG).show()
             }

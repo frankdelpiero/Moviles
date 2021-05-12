@@ -18,13 +18,13 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
     var dueCard: LiveData<Card?> =
         Transformations.map(cards,::due) // Siguiente carta
     private fun due(cards: List<Card>) = try { // Aplica el metdo random
-       // if (number > 0){
-         //   Timber.i("PREGUNTAS RESTANTES $number")
-           // number -= 1
+        if (number > 0){
+            Timber.i("PREGUNTAS RESTANTES $number")
+            number -= 1
             cards.filter { card -> card.isDue(LocalDateTime.now()) }.random()
-        //} else{
-          //  null
-        //}
+        } else{
+            null
+        }
 
     } catch (e: Exception) {
         null
@@ -60,6 +60,7 @@ class  StudyViewModel(application: Application) : AndroidViewModel(application) 
         executor.execute {
             CardDatabase.getInstance(context).cardDao.update(card!!) // Aplicamos el metodo update
         }
+
        // card =  random_card()
     }
     //private fun random_card() = try {
