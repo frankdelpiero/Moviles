@@ -35,8 +35,8 @@ class CardEditFragment : Fragment() {
     private lateinit var card:Card
     private lateinit var cardId:String
     var deckId = 1L
-    lateinit var question:String
-    lateinit var answer:String
+    var question = ""
+    var answer = ""
     private val executor = Executors.newSingleThreadExecutor()
     // Añadir tarjetas a Firebase
     private var reference = FirebaseDatabase
@@ -77,13 +77,13 @@ class CardEditFragment : Fragment() {
         binding.acceptCardEditButton.setOnClickListener{
             card.question = question
             card.answer = answer
-            executor.execute{
-                //context?.let { CardDatabase.getInstance(it).cardDao.update(card) }
-                //Actualiza la tarjeta
-                viewModel.getContext.update(card)
-            }
-            // reference.child(card.id).setValue(card) // Añade la carta a Firebase
-            Toast.makeText(context,"Carta actualizada",Toast.LENGTH_LONG) .show()// Aviso al usuario de que su carta fue actualizada
+                executor.execute{
+                    //context?.let { CardDatabase.getInstance(it).cardDao.update(card) }
+                    //Actualiza la tarjeta
+                    viewModel.getContext.update(card)
+                }
+                // reference.child(card.id).setValue(card) // Añade la carta a Firebase
+                Toast.makeText(context,"Carta actualizada",Toast.LENGTH_LONG) .show()// Aviso al usuario de que su carta fue actualizada
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
         }
