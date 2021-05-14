@@ -17,8 +17,8 @@ import timber.log.Timber
 class EmailPasswordActivity : AppCompatActivity(){
     private lateinit var auth: FirebaseAuth
     private lateinit var binding : EmailPasswordBinding
-    lateinit var username:String
-    lateinit var password:String
+     var username = " "
+    var password = " "
     private lateinit var session:Session
     private lateinit var intentt:Intent
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +68,14 @@ class EmailPasswordActivity : AppCompatActivity(){
         }
 
         binding.InitButton.setOnClickListener{
+            if (password == null){ //
+                Timber.i("Esta entrando en pass")
+                password = " "
+            }
+            if (username == null){
+                Timber.i("Esta entrando en user")
+                username = " "
+            }
             session = Session(username,password)
             signIn(session.username,session.password)
         }

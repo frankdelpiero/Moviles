@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -65,12 +66,14 @@ class DeckEditFragment : Fragment() {
                 //Actualiza el mazo
                 viewModel.getContext.updateDeck(deck)
             }
+            Toast.makeText(context,"Mazo actualizado", Toast.LENGTH_LONG) .show()// Aviso al usuario de que el mazo fue actualizada
             it.findNavController().navigate(DeckEditFragmentDirections.actionDeckEditFragmentToDeckListFragment2())
                     //.navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
 
         }
         // Cancelo la opcion y paso directamente al menu de mazos
         binding.cancelDeckEditButton.setOnClickListener{
+            Toast.makeText(context,"Actualizacion cancelada",Toast.LENGTH_LONG) .show()
             it.findNavController().navigate(DeckEditFragmentDirections.actionDeckEditFragmentToDeckListFragment2())
         }
 

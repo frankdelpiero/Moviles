@@ -18,5 +18,6 @@ class DeckListViewModel (application: Application)
 
     val cardsToUpdater: LiveData<List<Card>> =   CardDatabase.getInstance(context).cardDao.getCards(Firebase.auth.currentUser.uid)
 
+    val decksToUpdater : LiveData<List<Deck>> = CardDatabase.getInstance(context).cardDao.getDecks(Firebase.auth.currentUser.uid)
 }
 

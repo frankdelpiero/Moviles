@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -82,12 +83,13 @@ class CardEditFragment : Fragment() {
                 viewModel.getContext.update(card)
             }
             // reference.child(card.id).setValue(card) // Añade la carta a Firebase
+            Toast.makeText(context,"Carta actualizada",Toast.LENGTH_LONG) .show()// Aviso al usuario de que su carta fue actualizada
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
-
         }
 
         binding.cancelCardEditButton.setOnClickListener{
+            Toast.makeText(context,"Cambios cancelados",Toast.LENGTH_LONG)
             it.findNavController()
                 .navigate(CardEditFragmentDirections.actionCardEditFragmentToCardListFragment(deckId))
         }

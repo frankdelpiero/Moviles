@@ -23,11 +23,6 @@ class TitleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PreferenceManager.setDefaultValues(
-            this,
-            R.xml.root_preferences,
-            false
-        )
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference = database.getReference("mensaje")
@@ -60,22 +55,5 @@ class TitleActivity : AppCompatActivity() {
                     .commit()
         }
     }
-    fun getUserProfile() {
-        // [START get_user_profile]
-        val user = Firebase.auth.currentUser
-        user?.let {
-            val name = user.displayName
-            Timber.i("EEKEDJE ${user.email}")
-            val email = user.email
 
-            // Check if user's email is verified
-            val emailVerified = user.isEmailVerified
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            val uid = user.uid
-        }
-        // [END get_user_profile]
-    }
 }

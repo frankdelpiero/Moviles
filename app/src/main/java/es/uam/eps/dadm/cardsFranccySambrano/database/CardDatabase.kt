@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import es.uam.eps.dadm.cardsFranccySambrano.Card
 import es.uam.eps.dadm.cardsFranccySambrano.Deck
 
-@Database(entities = [Card::class,Deck::class], version = 10, exportSchema = false)
+@Database(entities = [Card::class,Deck::class], version = 11, exportSchema = false)
 abstract class CardDatabase : RoomDatabase() {
     abstract val cardDao: CardDao // Acceso a la interfaz
     companion object { // Objeto acompañante

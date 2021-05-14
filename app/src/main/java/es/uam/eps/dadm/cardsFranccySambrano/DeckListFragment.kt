@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.preference.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
@@ -22,6 +24,7 @@ import es.uam.eps.dadm.cardsFranccySambrano.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
 private const val DATABASENAME = "tarjetas"
+private const val DATABASEDECKS = "decks"
 class DeckListFragment:Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private lateinit var adapter: DeckAdapter // Instancio el adaptador
@@ -32,12 +35,18 @@ class DeckListFragment:Fragment() {
     private var reference = FirebaseDatabase
             .getInstance()
             .getReference(DATABASENAME)
+    private var reference2 = FirebaseDatabase.getInstance().getReference(DATABASEDECKS)
     private val executor = Executors.newSingleThreadExecutor()
     private val deckListViewModel  by lazy {
         ViewModelProvider(this).get( DeckListViewModel::class.java)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferenceManager.setDefaultValues(
+                context,
+                R.xml.root_preferences,
+                false
+        )
         intentt = Intent(context, EmailPasswordActivity::class.java)
 
         userSession = Session(Firebase.auth.currentUser.email,"")
@@ -65,6 +74,9 @@ class DeckListFragment:Fragment() {
           binding.invalidateAll()
         })
 
+        deckListViewModel.decksToUpdater.observe(viewLifecycleOwner,Observer{
+            binding.invalidateAll()
+        })
 
 
         /**binding.buttonQuestion.setOnClickListener { view ->
@@ -86,27 +98,37 @@ class DeckListFragment:Fragment() {
             executor.execute {
                 deckListViewModel.cardDao.addDeck(deck)
             }
+            Timber.i("Agregando un conjunto de cartas ")
             it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckEditFragment(deck.id)) // Navegamos a decKEditFraagment
 
             //navigate(CardListFragmentDirections.actionCardListFragmentToCardEditFragment(card.id,args.idMazo))
         }
 
         binding.deleteDeckFab.setOnClickListener{
+            Timber.i("Eliminado un mazo de cartas")
             it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragment2ToDeckDeleteFragment())
         }
 
         binding.signOutFab.setOnClickListener{
             Timber.i("Desconectando a ${userSession.username}")
+            Toast.makeText(context,"Hasta luego..",Toast.LENGTH_LONG).show()
             FirebaseAuth.getInstance().signOut()
             startActivity(intentt)
         }
 
         binding.updateFab.setOnClickListener{
             Timber.i("Subiendo cartas...")
+            Toast.makeText(context,"Subiendo cartas..",Toast.LENGTH_LONG).show()
             for (c in deckListViewModel.cardsToUpdater.value!!){
                 Timber.i("CARTA ${c.question} y ${c.answer}")
                 reference.child(c.id).setValue(c)
             }
+            Timber.i("Subiendo mazos ...")
+            Toast.makeText(context,"Subiendo mazos..",Toast.LENGTH_LONG).show()
+            for(d in deckListViewModel.decksToUpdater.value!!){
+                reference2.child(d.id.toString()).setValue(d)
+            }
+
         }
 
         return binding.root
